@@ -5,17 +5,17 @@ var db = mongoose.connection;
 db.once('open', function() {
     let reviewSchema = new mongoose.Schema({
       room_id: Number,
-      User: String,
+      user: String,
       created_at: Date,
       review_text: String,
-      Image_url: String,
+      image_url: String,
       accuracy_rating: Number,
       communication_rating: Number,
       cleanliness_rating: Number,
       location_rating: Number,
       check_in_rating: Number,
       value_rating: Number,
-      Is_reported: Boolean,
+      is_reported: Boolean,
   });
 
 
