@@ -1,8 +1,6 @@
-// IGNORE THIS FILE FOR NOW.
-
-// const db = require('./models/');
-// const faker = require('faker');
-// const mongoose = require('mongoose');
+// const db = require('../models');
+const faker = require('faker');
+const mongoose = require('mongoose');
 // const Review = require('./models/Review');
 
 class FakeDataGenerator {
@@ -67,18 +65,18 @@ class FakeDataGenerator {
 let myFactory = new FakeDataGenerator();
 let fakeData = myFactory.createData();
 
-const save = (data) => {
-  const reviewInstance = new Review(data);
-  reviewInstance.save(function(err, stored) {
-    if (err) {
-      console.log('err when saving data: ', err);
-    }
-  });
-}
+// const save = (data) => {
+//   const reviewInstance = new Review(data);
+//   reviewInstance.save(function(err, stored) {
+//     if (err) {
+//       console.log('err when saving data: ', err);
+//     }
+//   });
+// }
 
-fakeData.forEach((review) => {
-  save(review);
-});
+// fakeData.forEach((review) => {
+//   save(review);
+// });
 
 
-// module.exports = { fakeData: fakeData };
+module.exports = { fakeData: fakeData };

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const dbURI = process.env.MONGODB_URI || "mongodb://localhost/chess-pro"
+const dbURI = process.env.MONGODB_URI || "mongodb://localhost/airfec-reviews"
 
 mongoose.connect(dbURI);
 
@@ -26,4 +26,6 @@ process.on('SIGINT', function() {
   });
 });
 
-module.exports = {};
+module.exports = {
+  Review: require('./Review')
+};
