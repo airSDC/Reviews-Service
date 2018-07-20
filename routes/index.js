@@ -1,9 +1,7 @@
 const express = require('express');
-
-const ctrl = require('./../controllers');
+const controller = require('../controllers');
 
 const router = express.Router();
-
-// router.get('/', ctrl.main.home);
+router.get('/rooms/:id', controller.reviews.get);
 
 module.exports = router;
