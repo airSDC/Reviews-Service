@@ -1,12 +1,13 @@
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/airfec');
 const db = mongoose.connection;
+const fakeData = require('../generate');
 
 db.once('open', function() {
     let reviewSchema = new mongoose.Schema({
       room_id: Number,
       user: String,
-      created_at: Date,
+      created_at: String,
       review_text: String,
       image_url: String,
       accuracy_rating: Number,
@@ -18,7 +19,6 @@ db.once('open', function() {
       is_reported: Boolean,
   });
 
-
   const Review = mongoose.model('Review', reviewSchema);
 
   const save = (data) => {
@@ -29,6 +29,10 @@ db.once('open', function() {
       }
     });
   }
+  
+  // fakeData.fakeData.forEach(function(review) {
+  //   save(review);
+  // });
 
   const retrieveAll = function(callback) {
     Review.find({}, function(err, reviews) {
