@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/airfec');
-var db = mongoose.connection;
+const db = mongoose.connection;
 
 db.once('open', function() {
     let reviewSchema = new mongoose.Schema({
@@ -19,10 +19,10 @@ db.once('open', function() {
   });
 
 
-  let Review = mongoose.model('Review', reviewSchema);
+  const Review = mongoose.model('Review', reviewSchema);
 
-  let save = (data) => {
-    var reviewInstance = new Review(data);
+  const save = (data) => {
+    const reviewInstance = new Review(data);
     reviewInstance.save(function(err, stored) {
       if (err) {
         console.log('err when saving data: ', err);
@@ -30,7 +30,7 @@ db.once('open', function() {
     });
   }
 
-  let retrieveAll = function(callback) {
+  const retrieveAll = function(callback) {
     Review.find({}, function(err, reviews) {
       if (err) {
         console.log('err in database query: ', err);
