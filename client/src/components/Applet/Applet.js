@@ -8,16 +8,18 @@ class Applet extends Component {
       hello: 'world'
     };
   }
-
-  // componentWillMount(){}
-  // componentDidMount(){}
-  // componentWillUnmount(){}
-
-  // componentWillReceiveProps(){}
-  // shouldComponentUpdate(){}
-  // componentWillUpdate(){}
-  // componentDidUpdate(){}
-
+  componentDidMount() {
+    fetch("http://localhost:3002/api/rooms/1")
+      .then(res => res.json())
+      .then(
+        (result) => {
+          console.log(result);
+        },
+        (error) => {
+          console.log('error in fetching data: ', error);
+        }
+      )
+  }
   render() {
     return (
       <h1>
