@@ -9,16 +9,10 @@ class Applet extends Component {
     };
   }
   componentDidMount() {
-    fetch("http://localhost:3002/api/rooms/1")
+    fetch("/api/rooms/1")
       .then(res => res.json())
-      .then(
-        (result) => {
-          console.log(result);
-        },
-        (error) => {
-          console.log('error in fetching data: ', error);
-        }
-      )
+      .then(response => console.log('Success:', response))
+      .catch(error => console.error('Error in fetching:', error));
   }
   render() {
     return (
