@@ -22,7 +22,9 @@ class Reviews extends Component {
       .catch(error => console.error('Error in fetching:', error));
   }
   componentDidMount() {
-    this.getAllReviews(1);
+    const paths = window.location.pathname.substr(1).split('/');
+    const roomNum = paths[1];
+    this.getAllReviews(roomNum);
   }
   render() {
     return (
