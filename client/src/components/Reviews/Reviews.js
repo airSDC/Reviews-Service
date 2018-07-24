@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import FontAwesome from 'react-fontawesome';
 import Search from '../Search';
+import SingleReview from '../SingleReview';
 
 class Reviews extends Component {
   constructor(props) {
@@ -26,21 +27,10 @@ class Reviews extends Component {
     return (
       <div>
         <Search reviews={this.state.reviews} />
+        <div></div>
         <div>
-        
-        </div>
-        <h1>
-          Hello {this.state.hello} <FontAwesome name="rocket" size="2x" />
-        </h1>
-        <div>
-        {this.state.reviews.map(review => {
-          return (
-          <div>
-            <h3 key={review.user}>{review.user}</h3>
-            <p key={review.room_id}>{review.review_text}</p>
-          </div>
-          )
-        })}
+        {this.state.reviews.map(review => 
+          <SingleReview key={review.user} review={review} />)}
         </div>
       </div>
     );

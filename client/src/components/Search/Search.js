@@ -9,28 +9,18 @@ class Search extends Component {
       reviews: props.reviews,
     };
   }
-  // getAllReviews(roomId) {
-  //   fetch(`/api/rooms/${roomId}/reviews`)
-  //     .then(res => res.json())
-  //     .then(reviews => {
-  //       console.log(reviews)
-  //       return this.setState({reviews: reviews})
-  //     })
-  //     .catch(error => console.error('Error in fetching:', error));
-  // }
-  // componentDidMount() {
-  //   this.getAllReviews(1);
-  // }
   render() {
     return (
       <div>
-      <h2>{this.props.reviews.length} Reviews</h2>
+      <span>{this.props.reviews.length} Reviews</span>
+      <span>
       <form>
         <label>
           Mag Image
           <input type="text" placeholder="Search Reviews"/>
         </label>
       </form>
+      </span>
       </div>
     );
   }
