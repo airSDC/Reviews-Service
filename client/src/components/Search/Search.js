@@ -12,15 +12,15 @@ class Search extends Component {
   render() {
     return (
       <div>
-      <span>{this.props.reviews.length} Reviews</span>
-      <span>
-      <form>
-        <label>
-          Mag Image
-          <input type="text" placeholder="Search Reviews"/>
-        </label>
-      </form>
-      </span>
+        <span>{this.props.reviews.length} Reviews</span>
+        <span>
+          <form>
+            <label>
+              Mag Image
+             <input type="text" placeholder="Search Reviews"/>
+            </label>
+          </form>
+        </span>
       </div>
     );
   }

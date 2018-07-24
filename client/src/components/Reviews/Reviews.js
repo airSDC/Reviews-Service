@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import FontAwesome from 'react-fontawesome';
 import Search from '../Search';
 import SingleReview from '../SingleReview';
+import Rating from '../Rating';
 
 class Reviews extends Component {
   constructor(props) {
@@ -27,9 +28,9 @@ class Reviews extends Component {
     return (
       <div>
         <Search reviews={this.state.reviews} />
-        <div></div>
+        <Rating reviews={this.state.reviews} />
         <div>
-        {this.state.reviews.map(review => 
+          {this.state.reviews.map(review => 
           <SingleReview key={review.user} review={review} />)}
         </div>
       </div>

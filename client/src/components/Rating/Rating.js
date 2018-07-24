@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 // import FontAwesome from 'react-fontawesome';
 // import Search from '../Search';
 
-class SingleReview extends Component {
+class Rating extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -13,12 +13,12 @@ class SingleReview extends Component {
   render() {
     return (
       <div>
-        <h3 key={this.props.review.user}>{this.props.review.user}</h3>
-        <h4 key={this.props.review.created_at}>{this.props.review.created_at}</h4>
-        <p key={this.props.review.room_id}>{this.props.review.review_text}</p>
+        <h4>Accuracy         Location</h4>
+        <h4>Communication    Check-in</h4>
+        <h4>Cleanliness      Value</h4>
       </div>
     );
   }
 }
 
-export default SingleReview;
+export default Rating;
