@@ -9,10 +9,10 @@ class SingleReview extends Component {
       reviews: props.reviews,
     };
   }
-  // <img src={this.props.review.image_url} alt="user"/>
   render() {
     return (
       <div>
+        <img src={this.props.review.image_url} alt="user"/>
         <h3 key={this.props.review.user}>{this.props.review.user}</h3>
         <h4 key={this.props.review.created_at}>{this.props.review.created_at}</h4>
         <p key={this.props.review.room_id}>{this.props.review.review_text}</p>
