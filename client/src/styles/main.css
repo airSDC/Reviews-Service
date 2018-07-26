@@ -1,3 +1,41 @@
-body {
-  /*background: ;*/
+/*body {
+  background: ;
+}
+*/
+
+.border {
+  border-top: 2px solid rgb(224, 226, 229);
+  border-bottom: 2px solid rgb(224, 226, 229);
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.text {
+  font-family: 'Helvetica';
+  color: rgb(70, 70, 70);
+}
+
+.description {
+  line-height: 22px;
+  font-size: 16px;
+}
+
+.user-image {
+  border-radius: 50%;
+  height: 60px;
+  width: auto;
+}
+
+.align-items {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.name {
+  margin-left: 6px;
+  margin-right: 6px;
+}
+
+.search-bar {
+  /*float: right;*/
 }
