@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 // import FontAwesome from 'react-fontawesome';
 // import Search from '../Search';
+// import '../../styles/main.css';
 
 class Search extends Component {
   constructor(props) {
@@ -11,13 +12,13 @@ class Search extends Component {
   }
   render() {
     return (
-      <div>
-        <span>{this.props.reviews.length} Reviews</span>
+      <div className="border align-items">
+        <span className="text">{this.props.reviews.length} Reviews</span>
         <span>
           <form>
-            <label>
+            <label >
               Mag Image
-             <input type="text" placeholder="Search Reviews"/>
+             <input className="search-bar" type="text" placeholder="Search Reviews"/>
             </label>
           </form>
         </span>
