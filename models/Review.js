@@ -1,6 +1,4 @@
 const mongoose = require('mongoose');
-// const fakeData = require('../generate');
-// const faker = require('faker');
 
 const ReviewSchema = new mongoose.Schema({
   room_id: Number,

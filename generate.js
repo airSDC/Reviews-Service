@@ -1,9 +1,6 @@
-const db = require('./models');
-const faker = require('faker');
 const mongoose = require('mongoose');
-
-
-const Review = require('./models/Review')
+const faker = require('faker');
+const db = require('./models');
 
 class ReviewGenerator {
   constructor() {
@@ -19,7 +16,6 @@ class ReviewGenerator {
         review.user = faker.name.findName();
         review.created_at = `${faker.date.month()} ${years[Math.floor(Math.random() * (3))]}`;
         review.review_text = faker.lorem.paragraph();
-        // review.image_url = faker.random.image();
         review.image_url = `https://s3-us-west-1.amazonaws.com/airfecuserimages/randPeopleImages/randPerson${Math.floor(Math.random() * (12)) + 1}.jpeg`;
 
         review.accuracy_rating = faker.random.number({
@@ -55,15 +51,15 @@ class ReviewGenerator {
 
     // close connection to db
     Promise.all(this.reviews)
-      .then(function(results) {
+      .then((results) => {
         console.log('sample item', results);
-        console.log(results.length + ' entrys saved in DataBase');
+        console.log(`${results.length} entrys saved in DataBase`);
       })
-      .catch(function(err) {
+      .catch((err) => {
         console.error(err);
       })
-      .then(function() {
-        mongoose.connection.close(function() {
+      .then(() => {
+        mongoose.connection.close(() => {
           process.exit(0);
         });
       });
@@ -77,16 +73,4 @@ db.Review.remove({}).exec((err) => {
   }
   const reviewGenerator = new ReviewGenerator();
   const fakeReviews = reviewGenerator.createReviews();
-  // const save = (data) => {
-  //   const reviewInstance = new Review(data);
-  //   reviewInstance.save((error) => {
-  //     if (err) {
-  //       console.log('err when saving data: ', error);
-  //     }
-  //   });
-  // };
-  // fakeReviews.forEach((review) => {
-  //   save(review);
-  // });
 });
-// module.exports = { fakeReviews: fakeReviews };

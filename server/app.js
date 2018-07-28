@@ -1,19 +1,19 @@
 const express = require('express');
-const routes = require('./../routes');
 const path = require('path');
+const routes = require('./../routes');
 
 const app = express();
 
 app.set('port', process.env.PORT || 3002);
 
-app.get('/', function(req, res) {
+app.get('/', (req, res) => {
   res.redirect('/rooms/1');
 });
 
 app.use(express.static('public/'));
-app.use( express.static('client/dist') );
+app.use(express.static('client/dist'));
 
-app.get('/rooms/:roomId', function(req, res) {
+app.get('/rooms/:roomId', (req, res) => {
   const reactPath = path.join(__dirname, '../public/index.html');
   res.sendFile(reactPath);
 });
