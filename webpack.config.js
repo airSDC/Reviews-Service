@@ -12,14 +12,17 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           query: {
-            presets: ['env', 'react']
-          }
-        }
+            presets: ['env', 'react'],
+          },
+        },
       },
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader']
-      }
-    ]
-  }
+        use: ['style-loader', 'css-loader'],
+      },
+    ],
+  },
+  resolve: {
+    extensions: ['.js', '.jsx'],
+  },
 };
