@@ -21,7 +21,6 @@ body {
 .rating-container {
   /*width: 100%;*/
   display: flex;
-  flex: ;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-evenly;
@@ -35,11 +34,34 @@ body {
   flex: 1;
 }
 
-.rating-star {
-  /*display: flex;*/
-  /*align-self: baseline;*/
-  /*margin-left: 100%;*/
+/***SEARCH COMPONENT***/
+
+.search-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
+
+.bar-container {
+  width: 50%;
+  margin-left: 0.5rem;
+}
+
+.review-length-container {
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
+  font-size: 20px;
+  font-weight: bold;
+  justify-content: flex-start;
+}
+
+.space-right {
+  margin: 0.5rem;
+}
+
+/***REVIEW COMPONENT***/
 
 .description {
   line-height: 22px;
@@ -62,36 +84,14 @@ body {
   margin-right: 6px;
 }
 
-.search-bar {
-  /*float: right;*/
-}
-
 .star {
-  color: blue;
+  color: #00858c;
 }
 
 .right-margin {
   margin-right: 1rem;
 }
 
-/*.rating-left {
-  width: 50%;
-  float: left;
-  height: 100%;
-  clear: both;
-}*/
-
-/*.rating-right {
-  width: 50%;
-  float: right;
-  height: 100%;
-  clear: both;
-}*/
-
-/*.float-left {
-  float: left;
-  clear: both;
-}*/
 
 .float-right {
   float: right;

@@ -22,9 +22,9 @@ class Reviews extends Component {
     fetch(`/api/rooms/${roomId}/reviews`)
       .then(res => res.json())
       .then((reviews) => {
-        reviews.reduce((review) => {
-          this.setState();
-        });
+        // reviews.reduce((review) => {
+        //   this.setState();
+        // });
         console.log(reviews);
         return this.setState({ reviews });
       })
