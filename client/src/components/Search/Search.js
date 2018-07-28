@@ -13,7 +13,7 @@ class Search extends Component {
   render() {
     return (
       <div className="border align-items">
-        <span className="text">{this.props.reviews.length} Reviews</span>
+        <span>{this.props.reviews.length} Reviews</span>
         <span>
           <form>
             <label >

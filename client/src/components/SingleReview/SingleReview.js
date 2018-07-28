@@ -11,7 +11,7 @@ class SingleReview extends Component {
   }
   render() {
     return (
-      <div className="border text">
+      <div className="border">
         <div className="align-items">
           <img className="user-image" src={this.props.review.image_url} alt="user"/>
           <span className="name" key={this.props.review.user}>{this.props.review.user}</span>
