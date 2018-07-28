@@ -1,1 +1,1 @@
-export { default } from './SingleReview.js'
+export { default } from './SingleReview';
