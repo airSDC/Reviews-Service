@@ -12,14 +12,15 @@ body {
 }
 
 .border {
-  border-top: 1px solid var(--second-color);
+  /*border-top: 1px solid var(--second-color);*/
   border-bottom: 1px solid var(--second-color);
   padding-top: 2rem;
   padding-bottom: 2rem;
 }
 
+/**********RATING COMPONENT**********/
+
 .rating-container {
-  /*width: 100%;*/
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -34,7 +35,12 @@ body {
   flex: 1;
 }
 
-/***SEARCH COMPONENT***/
+.star {
+  color: #00858c;
+  margin-right: 8px;
+}
+
+/**********SEARCH COMPONENT**********/
 
 .search-container {
   display: flex;
@@ -54,7 +60,7 @@ body {
   justify-content: space-between;
   width: 50%;
   font-size: 20px;
-  font-weight: bold;
+  font-weight: bolder;
   justify-content: flex-start;
 }
 
@@ -76,7 +82,19 @@ body {
   width: 80%;
 }
 
-/***REVIEW COMPONENT***/
+/**********REVIEW COMPONENT**********/
+
+.review-container {
+  display: flex;
+}
+
+.user-date-container {
+  margin-left: 10px;
+}
+
+.username {
+  font-weight: bold;
+}
 
 .description {
   line-height: 22px;
@@ -88,41 +106,3 @@ body {
   height: 60px;
   width: auto;
 }
-
-.align-items {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.name {
-  margin-left: 6px;
-  margin-right: 6px;
-}
-
-.star {
-  color: #00858c;
-  margin-right: 8px;
-}
-
-.right-margin {
-  margin-right: 1rem;
-}
-
-
-.float-right {
-  float: right;
-}
-
-.margin-left {
-  margin-left: 2rem;
-}
-
-.margin-right {
-  margin-right: 2rem;
-}
-
-.margin-horizontal {
-  margin-right: 2rem;
-  margin-left: 2rem;
-}
-

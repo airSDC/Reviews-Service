@@ -3,13 +3,17 @@ import PropTypes from 'prop-types';
 
 const SingleReview = ({ review }) => (
   <div className="border">
-    <div className="align-items">
-      <img className="user-image" src={review.image_url} alt="user" />
-      <span className="name" key={review.user}>
-        {review.user}
-      </span>
-      <div key={review.created_at}>
-        {review.created_at}
+    <div className="review-container">
+      <div className="image-container">
+        <img className="user-image" src={review.image_url} alt="user" />
+      </div>
+      <div className="user-date-container">
+        <div className="username">
+          {review.user}
+        </div>
+        <div>
+          {review.created_at}
+        </div>
       </div>
     </div>
     <p key={review.room_id}>
