@@ -1,19 +1,67 @@
-/*body {
-  background: ;
+body {
+  --main-bg-color: #fff;
+  --main-font-color: #4a4a4a;
+  --second-color: #ccd1cb;
+  --third-color: #ff2559;
+  --fourth-color: #007c87;
+
+  background-color: var(--main-bg-color);
+  color: var(--main-font-color);
+  font-family: Helvetica, sans-serif;
+  padding: 2rem 2rem;
 }
-*/
 
 .border {
-  border-top: 2px solid rgb(224, 226, 229);
-  border-bottom: 2px solid rgb(224, 226, 229);
+  border-top: 1px solid var(--second-color);
+  border-bottom: 1px solid var(--second-color);
   padding-top: 2rem;
   padding-bottom: 2rem;
 }
 
-.text {
-  font-family: 'Helvetica';
-  color: rgb(70, 70, 70);
+.rating-container {
+  /*width: 100%;*/
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }
+
+.rating-left {
+  flex: 1;
+}
+
+.rating-right {
+  flex: 1;
+}
+
+/***SEARCH COMPONENT***/
+
+.search-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.bar-container {
+  width: 50%;
+  margin-left: 0.5rem;
+}
+
+.review-length-container {
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
+  font-size: 20px;
+  font-weight: bold;
+  justify-content: flex-start;
+}
+
+.space-right {
+  margin: 0.5rem;
+}
+
+/***REVIEW COMPONENT***/
 
 .description {
   line-height: 22px;
@@ -36,6 +84,30 @@
   margin-right: 6px;
 }
 
-.search-bar {
-  /*float: right;*/
+.star {
+  color: #00858c;
+  margin-right: 8px;
 }
+
+.right-margin {
+  margin-right: 1rem;
+}
+
+
+.float-right {
+  float: right;
+}
+
+.margin-left {
+  margin-left: 2rem;
+}
+
+.margin-right {
+  margin-right: 2rem;
+}
+
+.margin-horizontal {
+  margin-right: 2rem;
+  margin-left: 2rem;
+}
+

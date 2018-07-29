@@ -1,3 +1,3 @@
 module.exports = {
-  reviews: require('./reviews')
-}
+  reviews: require('./reviews'),
+};
