@@ -44,8 +44,9 @@ body {
 }
 
 .bar-container {
+  display: flex;
   width: 50%;
-  margin-left: 0.5rem;
+  /*direction: rtl;*/
 }
 
 .review-length-container {
@@ -58,7 +59,21 @@ body {
 }
 
 .space-right {
-  margin: 0.5rem;
+  margin: 6px;
+}
+
+.search-mag-glass {
+  border-bottom: 1px solid var(--second-color);
+  border-top: 1px solid var(--second-color);
+  border-left: 1px solid var(--second-color);
+}
+
+.search-bar-border {
+  /*border-bottom: 1px solid var(--second-color);
+  border-top: 1px solid var(--second-color);
+  border-right: 1px solid var(--second-color);
+  border-left: 1px solid white;*/
+  width: 80%;
 }
 
 /***REVIEW COMPONENT***/
