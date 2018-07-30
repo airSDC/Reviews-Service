@@ -3,6 +3,7 @@ import FontAwesome from 'react-fontawesome';
 import Search from '../Search';
 import SingleReview from '../SingleReview';
 import Rating from '../Rating';
+import Pagination from '../Pagination';
 
 class Reviews extends Component {
   constructor(props) {
@@ -78,7 +79,7 @@ class Reviews extends Component {
           <FontAwesome name="star" className="star" />
           <FontAwesome name="star" className="star" />
           <FontAwesome name="star" className="star" />
-          <FontAwesome name="star-half" className="star" />
+          <FontAwesome name="star-half-o" className="star" />
         </div>
       );
     } else if (roundedRating === 4) {
@@ -88,6 +89,7 @@ class Reviews extends Component {
           <FontAwesome name="star" className="star" />
           <FontAwesome name="star" className="star" />
           <FontAwesome name="star" className="star" />
+          <FontAwesome name="star-o" className="star" />
         </div>
       );
     } else if (roundedRating === 3.5) {
@@ -96,7 +98,8 @@ class Reviews extends Component {
           <FontAwesome name="star" className="star" />
           <FontAwesome name="star" className="star" />
           <FontAwesome name="star" className="star" />
-          <FontAwesome name="star-half" className="star" />
+          <FontAwesome name="star-half-o" className="star" />
+          <FontAwesome name="star-o" className="star" />
         </div>
       );
     } else if (roundedRating === 3) {
@@ -105,6 +108,8 @@ class Reviews extends Component {
           <FontAwesome name="star" className="star" />
           <FontAwesome name="star" className="star" />
           <FontAwesome name="star" className="star" />
+          <FontAwesome name="star-o" className="star" />
+          <FontAwesome name="star-o" className="star" />
         </div>
       );
     } else if (roundedRating === 2.5) {
@@ -112,7 +117,9 @@ class Reviews extends Component {
         <div>
           <FontAwesome name="star" className="star" />
           <FontAwesome name="star" className="star" />
-          <FontAwesome name="star-half" className="star" />
+          <FontAwesome name="star-half-o" className="star" />
+          <FontAwesome name="star-o" className="star" />
+          <FontAwesome name="star-o" className="star" />
         </div>
       );
     } else if (roundedRating === 2) {
@@ -120,6 +127,9 @@ class Reviews extends Component {
         <div>
           <FontAwesome name="star" className="star" />
           <FontAwesome name="star" className="star" />
+          <FontAwesome name="star-o" className="star" />
+          <FontAwesome name="star-o" className="star" />
+          <FontAwesome name="star-o" className="star" />
         </div>
       );
     } else if (roundedRating === 1.5) {
@@ -127,18 +137,29 @@ class Reviews extends Component {
         <div>
           <FontAwesome name="star" className="star" />
           <FontAwesome name="star-half" className="star" />
+          <FontAwesome name="star-o" className="star" />
+          <FontAwesome name="star-o" className="star" />
+          <FontAwesome name="star-o" className="star" />
         </div>
       );
     } else if (roundedRating === 1) {
       return (
         <div>
           <FontAwesome name="star" className="star" />
+          <FontAwesome name="star-o" className="star" />
+          <FontAwesome name="star-o" className="star" />
+          <FontAwesome name="star-o" className="star" />
+          <FontAwesome name="star-o" className="star" />
         </div>
       );
     } else if (roundedRating === 0.5) {
       return (
         <div>
           <FontAwesome name="star-half" className="star" />
+          <FontAwesome name="star-o" className="star" />
+          <FontAwesome name="star-o" className="star" />
+          <FontAwesome name="star-o" className="star" />
+          <FontAwesome name="star-o" className="star" />
         </div>
       );
     }
@@ -155,6 +176,7 @@ class Reviews extends Component {
         <div>
           {this.state.reviews.map(review => <SingleReview key={review.user} review={review} />)}
         </div>
+        <Pagination />
       </div>
     );
   }
