@@ -177,13 +177,6 @@ class Reviews extends Component {
     });
   }
 
-  // handleReadMore(reviewText) {
-  //   this.setState({
-  //     restOfText: reviewText,
-  //     hideReadMoreButton: true,
-  //   });
-  // }
-
   render() {
     return (
       <div>
