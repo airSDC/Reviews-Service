@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const SingleReview = ({ review }) => (
+const SingleReview = ({ review, handleReadMore, restOfText, hideReadMoreButton }) => (
   <div className="border">
     <div className="review-container">
       <div className="image-container">
@@ -16,9 +16,20 @@ const SingleReview = ({ review }) => (
         </div>
       </div>
     </div>
-    <p key={review.room_id}>
-      {review.review_text}
-    </p>
+    <div>
+      {review.review_text.length < 100 ?
+        (<p key={review.room_id}>
+          {review.review_text}
+        </p>) : 
+        <div>
+          {review.review_text.substring(0, 100)}
+          { hideReadMoreButton ? null : <button className="read-more" onClick={() => handleReadMore(review.review_text.substring(100))}>
+            ... Read more
+          </button>}
+          <span>{restOfText}</span>
+        </div>
+      }
+    </div>
   </div>
 );
 

@@ -16,8 +16,14 @@ class Reviews extends Component {
       avg_location_rating: 0,
       avg_check_in_rating: 0,
       avg_value_rating: 0,
+      selectedPage: 1,
+      reviewsPerPage: 6,
+      restOfText: '',
+      hideReadMoreButton: false,
     };
     this.handleStarRating = this.handleStarRating.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+    this.handleReadMore = this.handleReadMore.bind(this);
   }
 
   componentDidMount() {
@@ -168,13 +174,27 @@ class Reviews extends Component {
     );
   }
 
+  handleClick(e) {
+    this.setState({
+      selectedPage: Number(e.target.id),
+    });
+  }
+
+  handleReadMore(reviewText) {
+    this.setState({
+      restOfText: reviewText,
+      hideReadMoreButton: true,
+    });
+  }
+
   render() {
     return (
       <div>
         <Search reviews={this.state.reviews} {...this.state} handleStarRating={this.handleStarRating} />
         <Rating reviews={this.state.reviews} {...this.state} handleStarRating={this.handleStarRating} />
         <div>
-          {this.state.reviews.map(review => <SingleReview key={review.user} review={review} />)}
+
+          {this.state.reviews.map(review => <SingleReview key={review.user} review={review} handleReadMore={this.handleReadMore} {...this.state} />)}
         </div>
         <Pagination />
       </div>
