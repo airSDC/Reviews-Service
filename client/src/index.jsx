@@ -5,4 +5,4 @@ import Reviews from './components/Reviews';
 // Component level styling
 import './styles/main.css';
 
-ReactDOM.render(<Reviews />, document.getElementById('root'));
+ReactDOM.render(<Reviews />, document.getElementById('reviews'));

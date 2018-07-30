@@ -1,7 +1,6 @@
 import React from 'react';
-import FontAwesome from 'react-fontawesome';
 
-const Rating = () => (
+const Rating = props => (
   <div className="border rating-container">
     <div className="rating-left">
       <div>
@@ -16,25 +15,13 @@ const Rating = () => (
     </div>
     <div className="rating-left">
       <div>
-        <FontAwesome name="star" className="star" />
-        <FontAwesome name="star" className="star" />
-        <FontAwesome name="star" className="star" />
-        <FontAwesome name="star" className="star" />
-        <FontAwesome name="star" className="star" />
+        {props.handleStarRating(props.avg_accuracy_rating)}
       </div>
       <div>
-        <FontAwesome name="star" className="star" />
-        <FontAwesome name="star" className="star" />
-        <FontAwesome name="star" className="star" />
-        <FontAwesome name="star" className="star" />
-        <FontAwesome name="star" className="star" />
+        {props.handleStarRating(props.avg_communication_rating)}
       </div>
       <div>
-        <FontAwesome name="star" className="star" />
-        <FontAwesome name="star" className="star" />
-        <FontAwesome name="star" className="star" />
-        <FontAwesome name="star" className="star" />
-        <FontAwesome name="star" className="star" />
+        {props.handleStarRating(props.avg_cleanliness_rating)}
       </div>
     </div>
     <div className="rating-right">
@@ -50,25 +37,13 @@ const Rating = () => (
     </div>
     <div>
       <div>
-        <FontAwesome name="star" className="star" />
-        <FontAwesome name="star" className="star" />
-        <FontAwesome name="star" className="star" />
-        <FontAwesome name="star" className="star" />
-        <FontAwesome name="star" className="star" />
+        {props.handleStarRating(props.avg_location_rating)}
       </div>
       <div>
-        <FontAwesome name="star" className="star" />
-        <FontAwesome name="star" className="star" />
-        <FontAwesome name="star" className="star" />
-        <FontAwesome name="star" className="star" />
-        <FontAwesome name="star" className="star" />
+        {props.handleStarRating(props.avg_check_in_rating)}
       </div>
       <div>
-        <FontAwesome name="star" className="star" />
-        <FontAwesome name="star" className="star" />
-        <FontAwesome name="star" className="star" />
-        <FontAwesome name="star" className="star" />
-        <FontAwesome name="star" className="star" />
+        {props.handleStarRating(props.avg_value_rating)}
       </div>
     </div>
   </div>
