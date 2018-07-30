@@ -7,6 +7,7 @@ class Search extends React.Component {
     super(props);
     this.state = {
       avg_total_rating: 0,
+      searchValue: '',
     };
   }
 
@@ -28,8 +29,8 @@ class Search extends React.Component {
 
         <div className="bar-container">
           <form>
-            <FontAwesome name="search" className="" />
-            <input className="" type="text" placeholder="Search Reviews" />
+            <FontAwesome name="search" className="" onClick={this.props.handleSearchClick} />
+            <input className="" type="text" placeholder="Search Reviews" onChange={this.props.handleSearchValue} />
           </form>
         </div>
       </div>

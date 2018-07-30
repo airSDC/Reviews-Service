@@ -18,9 +18,12 @@ class Reviews extends Component {
       avg_value_rating: 0,
       selectedPage: 1,
       reviewsPerPage: 6,
+      searchValue: '',
     };
     this.handleStarRating = this.handleStarRating.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.handleSearchClick = this.handleSearchClick.bind(this);
+    this.handleSearchValue = this.handleSearchValue.bind(this);
   }
 
   componentDidMount() {
@@ -177,6 +180,19 @@ class Reviews extends Component {
     });
   }
 
+  handleSearchValue(e) {
+    this.setState({
+      searchValue: e.target.value,
+    });
+  }
+
+  handleSearchClick() {
+    this.setState({
+      reviews: this.state.reviews.filter((review) =>
+      review.review_text.includes(this.state.searchValue))
+    });
+  }
+
   render() {
     return (
       <div>
@@ -184,6 +200,8 @@ class Reviews extends Component {
           reviews={this.state.reviews}
           {...this.state}
           handleStarRating={this.handleStarRating}
+          handleSearchClick={this.handleSearchClick}
+          handleSearchValue={this.handleSearchValue}
         />
         <Rating
           reviews={this.state.reviews}
