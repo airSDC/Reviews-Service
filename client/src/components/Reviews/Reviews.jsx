@@ -18,12 +18,9 @@ class Reviews extends Component {
       avg_value_rating: 0,
       selectedPage: 1,
       reviewsPerPage: 6,
-      restOfText: '',
-      hideReadMoreButton: false,
     };
     this.handleStarRating = this.handleStarRating.bind(this);
     this.handleClick = this.handleClick.bind(this);
-    this.handleReadMore = this.handleReadMore.bind(this);
   }
 
   componentDidMount() {
@@ -52,8 +49,8 @@ class Reviews extends Component {
             + review.value_rating, 0) / reviews.length,
         });
         console.log(this.state.reviews);
-        const totalAveRating = (this.state.avg_accuracy_rating + 
-          this.state.avg_communication_rating
+        const totalAveRating = (this.state.avg_accuracy_rating
+          + this.state.avg_communication_rating
           + this.state.avg_cleanliness_rating
           + this.state.avg_location_rating
           + this.state.avg_check_in_rating
@@ -180,21 +177,34 @@ class Reviews extends Component {
     });
   }
 
-  handleReadMore(reviewText) {
-    this.setState({
-      restOfText: reviewText,
-      hideReadMoreButton: true,
-    });
-  }
+  // handleReadMore(reviewText) {
+  //   this.setState({
+  //     restOfText: reviewText,
+  //     hideReadMoreButton: true,
+  //   });
+  // }
 
   render() {
     return (
       <div>
-        <Search reviews={this.state.reviews} {...this.state} handleStarRating={this.handleStarRating} />
-        <Rating reviews={this.state.reviews} {...this.state} handleStarRating={this.handleStarRating} />
+        <Search
+          reviews={this.state.reviews}
+          {...this.state}
+          handleStarRating={this.handleStarRating}
+        />
+        <Rating
+          reviews={this.state.reviews}
+          {...this.state}
+          handleStarRating={this.handleStarRating}
+        />
         <div>
-
-          {this.state.reviews.map(review => <SingleReview key={review.user} review={review} handleReadMore={this.handleReadMore} {...this.state} />)}
+          {this.state.reviews.map(review => (
+            <SingleReview
+              key={review.user}
+              review={review}
+              handleReadMore={this.handleReadMore}
+              {...this.state}
+            />))}
         </div>
         <Pagination />
       </div>

@@ -1,37 +1,62 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const SingleReview = ({ review, handleReadMore, restOfText, hideReadMoreButton }) => (
-  <div className="border">
-    <div className="review-container">
-      <div className="image-container">
-        <img className="user-image" src={review.image_url} alt="user" />
+// const SingleReview = ({ review, handleReadMore, restOfText, hideReadMoreButton }) => (
+class SingleReview extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = ({
+      restOfText: '',
+      hideReadMoreButton: false,
+    });
+    this.handleReadMore = this.handleReadMore.bind(this);
+  }
+
+  handleReadMore(reviewText) {
+    this.setState({
+      restOfText: reviewText,
+      hideReadMoreButton: true,
+    });
+  }
+
+  render() {
+    return (<div className="border">
+      <div className="review-container">
+        <div className="image-container">
+          <img className="user-image" src={this.props.review.image_url} alt="user" />
+        </div>
+        <div className="user-date-container">
+          <div className="username">
+            {this.props.review.user}
+          </div>
+          <div>
+            {this.props.review.created_at}
+          </div>
+        </div>
       </div>
-      <div className="user-date-container">
-        <div className="username">
-          {review.user}
-        </div>
-        <div>
-          {review.created_at}
-        </div>
+      <div>
+        {this.props.review.review_text.length < 100
+          ? (
+            <p key={this.props.review.room_id}>
+              {this.props.review.review_text}
+            </p>)
+          : (
+            <div>
+              {this.props.review.review_text.substring(0, 100)}
+              {this.state.hideReadMoreButton ? null : (
+                <button type="button" className="read-more" onClick={() => this.handleReadMore(this.props.review.review_text.substring(100))}>
+                  ... Read more
+                </button>)}
+              <span>
+                {this.state.restOfText}
+              </span>
+            </div>)
+        }
       </div>
     </div>
-    <div>
-      {review.review_text.length < 100 ?
-        (<p key={review.room_id}>
-          {review.review_text}
-        </p>) : 
-        <div>
-          {review.review_text.substring(0, 100)}
-          { hideReadMoreButton ? null : <button className="read-more" onClick={() => handleReadMore(review.review_text.substring(100))}>
-            ... Read more
-          </button>}
-          <span>{restOfText}</span>
-        </div>
-      }
-    </div>
-  </div>
-);
+    );
+  }
+}
 
 SingleReview.propTypes = {
   review: PropTypes.shape({
