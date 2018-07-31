@@ -16,17 +16,19 @@ class Reviews extends Component {
       avg_location_rating: 0,
       avg_check_in_rating: 0,
       avg_value_rating: 0,
-      selectedPage: 1,
       reviewsPerPage: 6,
       searchValue: '',
       showBackToReviews: false,
       tempAllReviews: [],
+      selectedPage: 1,
+      listOfPages: [],
+      reviewsByPage: {},
     };
     this.handleStarRating = this.handleStarRating.bind(this);
-    this.handleClick = this.handleClick.bind(this);
     this.handleSearchClick = this.handleSearchClick.bind(this);
     this.handleSearchValue = this.handleSearchValue.bind(this);
     this.handleBackToReviewsButton = this.handleBackToReviewsButton.bind(this);
+    this.handleReviewsSelected = this.handleReviewsSelected.bind(this);
   }
 
   componentDidMount() {
@@ -39,9 +41,19 @@ class Reviews extends Component {
     fetch(`/api/rooms/${roomId}/reviews`)
       .then(res => res.json())
       .then((reviews) => {
+        const numOfPages = Math.ceil(reviews.length / 6);
+        const reviewsByPage = {};
+        let j = 0;
+        let k = 6;
+        for (let i = 1; i <= numOfPages; i += 1) {
+          reviewsByPage[i] = reviews.slice(j, k);
+          j += 6;
+          k += 6;
+        }
         this.setState({
-          reviews,
+          reviewsByPage,
           tempAllReviews: reviews,
+          reviews: reviewsByPage[1],
           avg_accuracy_rating: reviews.reduce((total, review) => total
             + review.accuracy_rating, 0) / reviews.length,
           avg_communication_rating: reviews.reduce((total, review) => total
@@ -177,12 +189,6 @@ class Reviews extends Component {
     );
   }
 
-  handleClick(e) {
-    this.setState({
-      selectedPage: Number(e.target.id),
-    });
-  }
-
   handleSearchValue(e) {
     this.setState({
       searchValue: e.target.value,
@@ -190,9 +196,10 @@ class Reviews extends Component {
   }
 
   handleSearchClick() {
-    const { reviews, searchValue } = this.state;
+    // const { reviews, searchValue } = this.state;
+    const { tempAllReviews, searchValue } = this.state;
     this.setState({
-      reviews: reviews
+      reviews: tempAllReviews
         .filter(review => review.review_text.includes(searchValue)),
       showBackToReviews: true,
     });
@@ -206,11 +213,19 @@ class Reviews extends Component {
     });
   }
 
+  handleReviewsSelected(e) {
+    const { reviewsByPage } = this.state;
+    this.setState({
+      selectedPage: Number(e.currentTarget.textContent),
+      reviews: reviewsByPage[Number(e.currentTarget.textContent)],
+    });
+  }
+
   render() {
     return (
       <div>
         <Search
-          reviews={this.state.reviews}
+          reviews={reviews}
           {...this.state}
           handleStarRating={this.handleStarRating}
           handleSearchClick={this.handleSearchClick}
@@ -231,7 +246,7 @@ class Reviews extends Component {
               {...this.state}
             />))}
         </div>
-        <Pagination />
+        <Pagination {...this.state} handleReviewsSelected={this.handleReviewsSelected} />
       </div>
     );
   }

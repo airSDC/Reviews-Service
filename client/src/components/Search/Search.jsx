@@ -3,7 +3,7 @@ import FontAwesome from 'react-fontawesome';
 import PropTypes from 'prop-types';
 
 const Search = ({
-  reviews,
+  tempAllReviews,
   handleStarRating,
   avgTotalRating,
   handleSearchClick,
@@ -12,7 +12,7 @@ const Search = ({
   <div className="search-container border">
     <div className="total-rating-container">
       <span className="review-length-container">
-        {reviews.length}
+        {tempAllReviews.length}
       </span>
       <span className="review-length-container">
         Reviews
@@ -32,7 +32,7 @@ const Search = ({
 );
 
 Search.propTypes = {
-  reviews: PropTypes.array.isRequired,
+  tempAllReviews: PropTypes.array.isRequired,
   handleStarRating: PropTypes.func.isRequired,
   avgTotalRating: PropTypes.number,
   handleSearchClick: PropTypes.func.isRequired,
