@@ -16,17 +16,24 @@ class Reviews extends Component {
       avg_location_rating: 0,
       avg_check_in_rating: 0,
       avg_value_rating: 0,
-      selectedPage: 1,
       reviewsPerPage: 6,
       searchValue: '',
       showBackToReviews: false,
       tempAllReviews: [],
+      selectedPage: 1,
+      listOfPages: [],
+      reviewsByPage: {},
+      searchBarClass: 'search-bar-area',
     };
     this.handleStarRating = this.handleStarRating.bind(this);
-    this.handleClick = this.handleClick.bind(this);
     this.handleSearchClick = this.handleSearchClick.bind(this);
     this.handleSearchValue = this.handleSearchValue.bind(this);
     this.handleBackToReviewsButton = this.handleBackToReviewsButton.bind(this);
+    this.handleReviewsSelected = this.handleReviewsSelected.bind(this);
+    this.handleSearchEnter = this.handleSearchEnter.bind(this);
+    this.handleSearchBarClass = this.handleSearchBarClass.bind(this);
+    this.handleRightArrow = this.handleRightArrow.bind(this);
+    this.handleLeftArrow = this.handleLeftArrow.bind(this);
   }
 
   componentDidMount() {
@@ -39,9 +46,20 @@ class Reviews extends Component {
     fetch(`/api/rooms/${roomId}/reviews`)
       .then(res => res.json())
       .then((reviews) => {
+        const numOfPages = Math.ceil(reviews.length / 6);
+        const reviewsByPage = {};
+        let j = 0;
+        let k = 6;
+        for (let i = 1; i <= numOfPages; i += 1) {
+          reviewsByPage[i] = reviews.slice(j, k);
+          j += 6;
+          k += 6;
+        }
         this.setState({
-          reviews,
+          reviewsByPage,
+          numOfPages,
           tempAllReviews: reviews,
+          reviews: reviewsByPage[1],
           avg_accuracy_rating: reviews.reduce((total, review) => total
             + review.accuracy_rating, 0) / reviews.length,
           avg_communication_rating: reviews.reduce((total, review) => total
@@ -55,7 +73,6 @@ class Reviews extends Component {
           avg_value_rating: reviews.reduce((total, review) => total
             + review.value_rating, 0) / reviews.length,
         });
-        console.log(this.state.reviews);
         const totalAveRating = (this.state.avg_accuracy_rating
           + this.state.avg_communication_rating
           + this.state.avg_cleanliness_rating
@@ -178,12 +195,6 @@ class Reviews extends Component {
     );
   }
 
-  handleClick(e) {
-    this.setState({
-      selectedPage: Number(e.target.id),
-    });
-  }
-
   handleSearchValue(e) {
     this.setState({
       searchValue: e.target.value,
@@ -191,18 +202,87 @@ class Reviews extends Component {
   }
 
   handleSearchClick() {
+    const { tempAllReviews, searchValue } = this.state;
+    if (searchValue === '') {
+      return;
+    }
     this.setState({
-      reviews: this.state.reviews
-        .filter(review => review.review_text.includes(this.state.searchValue)),
+      reviews: tempAllReviews
+        .filter(review => review.review_text.includes(searchValue)),
+      showBackToReviews: true,
+    });
+  }
+
+  handleSearchEnter(e) {
+    if (e.keyCode !== 13) {
+      return null;
+    }
+    e.preventDefault();
+    const { tempAllReviews, searchValue } = this.state;
+    this.setState({
+      reviews: tempAllReviews
+        .filter(review => review.review_text.includes(searchValue)),
       showBackToReviews: true,
     });
   }
 
   handleBackToReviewsButton() {
+    const { tempAllReviews } = this.state;
     this.setState({
-      reviews: this.state.tempAllReviews,
+      reviews: tempAllReviews,
       showBackToReviews: false,
     });
+  }
+
+  handleReviewsSelected(e) {
+    const { reviewsByPage } = this.state;
+    this.setState({
+      selectedPage: Number(e.currentTarget.textContent),
+      reviews: reviewsByPage[Number(e.currentTarget.textContent)],
+      pageClass: 'selected-page',
+    });
+    window.scrollBy({
+      top: -400,
+      left: 0,
+      behavior: 'smooth',
+    });
+  }
+
+  handleSearchBarClass() {
+    this.setState({
+      searchBarClass: 'search-bar-area-selected',
+    });
+  }
+
+  handleRightArrow() {
+    const { selectedPage, tempAllReviews, reviewsByPage } = this.state;
+    const totalNumOfPages = Math.ceil(tempAllReviews.length / 6);
+    if (selectedPage < totalNumOfPages) {
+      this.setState({
+        selectedPage: selectedPage + 1,
+        reviews: reviewsByPage[selectedPage + 1],
+      });
+      window.scrollBy({
+        top: -400,
+        left: 0,
+        behavior: 'smooth',
+      });
+    }
+  }
+
+  handleLeftArrow() {
+    const { selectedPage, reviewsByPage } = this.state;
+    if (selectedPage > 0) {
+      this.setState({
+        selectedPage: selectedPage - 1,
+        reviews: reviewsByPage[selectedPage - 1],
+      });
+      window.scrollBy({
+        top: -400,
+        left: 0,
+        behavior: 'smooth',
+      });
+    }
   }
 
   render() {
@@ -214,6 +294,8 @@ class Reviews extends Component {
           handleStarRating={this.handleStarRating}
           handleSearchClick={this.handleSearchClick}
           handleSearchValue={this.handleSearchValue}
+          handleSearchEnter={this.handleSearchEnter}
+          handleSearchBarClass={this.handleSearchBarClass}
         />
         <Rating
           reviews={this.state.reviews}
@@ -221,16 +303,29 @@ class Reviews extends Component {
           handleStarRating={this.handleStarRating}
           handleBackToReviewsButton={this.handleBackToReviewsButton}
         />
-        <div>
-          {this.state.reviews.map(review => (
-            <SingleReview
-              key={review.user}
-              review={review}
-              handleReadMore={this.handleReadMore}
-              {...this.state}
-            />))}
-        </div>
-        <Pagination />
+        {this.state.reviews.length
+          ? (
+            <div>
+              {this.state.reviews.map(review => (
+                <SingleReview
+                  key={review.user}
+                  review={review}
+                  handleReadMore={this.handleReadMore}
+                  {...this.state}
+                />))}
+            </div>
+          ) : (
+            <div>
+              <h1>
+                No reviews to display
+              </h1>
+            </div>)}
+        <Pagination
+          {...this.state}
+          handleReviewsSelected={this.handleReviewsSelected}
+          handleRightArrow={this.handleRightArrow}
+          handleLeftArrow={this.handleLeftArrow}
+        />
       </div>
     );
   }
