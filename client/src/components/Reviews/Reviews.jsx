@@ -238,6 +238,11 @@ class Reviews extends Component {
       reviews: reviewsByPage[Number(e.currentTarget.textContent)],
       pageClass: 'selected-page',
     });
+    window.scrollBy({
+      top: -400, // could be negative value
+      left: 0,
+      behavior: 'smooth',
+    });
   }
 
   handleSearchBarClass() {
@@ -278,7 +283,7 @@ class Reviews extends Component {
           ) : (
             <div>
               <h1>
-                This listing has not been reviewed yet.
+                No reviews to display
               </h1>
             </div>)}
         <Pagination {...this.state} handleReviewsSelected={this.handleReviewsSelected} />
