@@ -55,7 +55,6 @@ class Reviews extends Component {
           avg_value_rating: reviews.reduce((total, review) => total
             + review.value_rating, 0) / reviews.length,
         });
-        console.log(this.state.reviews);
         const totalAveRating = (this.state.avg_accuracy_rating
           + this.state.avg_communication_rating
           + this.state.avg_cleanliness_rating
@@ -191,16 +190,18 @@ class Reviews extends Component {
   }
 
   handleSearchClick() {
+    const { reviews, searchValue } = this.state;
     this.setState({
-      reviews: this.state.reviews
-        .filter(review => review.review_text.includes(this.state.searchValue)),
+      reviews: reviews
+        .filter(review => review.review_text.includes(searchValue)),
       showBackToReviews: true,
     });
   }
 
   handleBackToReviewsButton() {
+    const { tempAllReviews } = this.state;
     this.setState({
-      reviews: this.state.tempAllReviews,
+      reviews: tempAllReviews,
       showBackToReviews: false,
     });
   }
