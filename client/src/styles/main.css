@@ -35,7 +35,7 @@ body {
 }
 
 .star {
-  color: #00858c;
+  color: var(--fourth-color);
   margin-right: 8px;
 }
 
@@ -74,14 +74,23 @@ body {
 }
 
 .search-bar-area {
-  width: 35%;
+  width: 30%;
   margin-left: auto;
-  border: 1px solid black;
+  border: 1px solid var(--second-color);
+  padding: 8px;
+}
+
+.search-bar-area-selected {
+  width: 30%;
+  margin-left: auto;
+  border: 1px solid var(--fourth-color);
+  padding: 8px;
 }
 
 .search-input {
   border: none;
   outline: none;
+  margin-left: 6px;
 }
 
 /**********REVIEW COMPONENT**********/
@@ -112,6 +121,10 @@ body {
 .read-more {
   color: blue;
   border: none;
+}
+
+.mag-icon {
+  color: #9a9c9e;
 }
 
 /****BACK TO REVIEWS SECTION****/

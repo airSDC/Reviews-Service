@@ -23,6 +23,7 @@ class Reviews extends Component {
       selectedPage: 1,
       listOfPages: [],
       reviewsByPage: {},
+      searchBarClass: 'search-bar-area',
     };
     this.handleStarRating = this.handleStarRating.bind(this);
     this.handleSearchClick = this.handleSearchClick.bind(this);
@@ -30,6 +31,7 @@ class Reviews extends Component {
     this.handleBackToReviewsButton = this.handleBackToReviewsButton.bind(this);
     this.handleReviewsSelected = this.handleReviewsSelected.bind(this);
     this.handleSearchEnter = this.handleSearchEnter.bind(this);
+    this.handleSearchBarClass = this.handleSearchBarClass.bind(this);
   }
 
   componentDidMount() {
@@ -237,6 +239,12 @@ class Reviews extends Component {
     });
   }
 
+  handleSearchBarClass() {
+    this.setState({
+      searchBarClass: 'search-bar-area-selected',
+    });
+  }
+
   render() {
     return (
       <div>
@@ -247,6 +255,7 @@ class Reviews extends Component {
           handleSearchClick={this.handleSearchClick}
           handleSearchValue={this.handleSearchValue}
           handleSearchEnter={this.handleSearchEnter}
+          handleSearchBarClass={this.handleSearchBarClass}
         />
         <Rating
           reviews={this.state.reviews}
