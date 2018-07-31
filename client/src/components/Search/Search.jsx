@@ -1,41 +1,42 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
+import PropTypes from 'prop-types';
 
-// const Search = props => (
-class Search extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      avg_total_rating: 0,
-      searchValue: '',
-    };
-  }
+const Search = ({
+  reviews,
+  handleStarRating,
+  avgTotalRating,
+  handleSearchClick,
+  handleSearchValue,
+}) => (
+  <div className="search-container border">
+    <div className="total-rating-container">
+      <span className="review-length-container">
+        {reviews.length}
+      </span>
+      <span className="review-length-container">
+        Reviews
+      </span>
+      <span>
+        {handleStarRating(avgTotalRating)}
+      </span>
+    </div>
+    <div className="search-bar-container">
+      <form className="search-bar-area">
+        <FontAwesome name="search" className="" onClick={handleSearchClick} />
+        <input className="search-input" type="text" placeholder="Search Reviews" onChange={handleSearchValue} />
+      </form>
+    </div>
 
-  render() {
-    return (
-      <div className="search-container">
-        <div className="review-length-container">
+  </div>
+);
 
-          <div className="">
-            <span className="space-right">
-              {this.props.reviews.length}
-            </span>
-            <span className="space-right">
-              Reviews
-            </span>
-            {this.props.handleStarRating(this.props.avg_total_rating)}
-          </div>
-        </div>
-
-        <div className="bar-container">
-          <form>
-            <FontAwesome name="search" className="" onClick={this.props.handleSearchClick} />
-            <input className="" type="text" placeholder="Search Reviews" onChange={this.props.handleSearchValue} />
-          </form>
-        </div>
-      </div>
-    );
-  }
-}
+Search.propTypes = {
+  reviews: PropTypes.array.isRequired,
+  handleStarRating: PropTypes.func.isRequired,
+  avgTotalRating: PropTypes.number,
+  handleSearchClick: PropTypes.func.isRequired,
+  handleSearchValue: PropTypes.func.isRequired,
+};
 
 export default Search;
