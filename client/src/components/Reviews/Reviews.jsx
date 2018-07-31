@@ -33,6 +33,7 @@ class Reviews extends Component {
     this.handleSearchEnter = this.handleSearchEnter.bind(this);
     this.handleSearchBarClass = this.handleSearchBarClass.bind(this);
     this.handleRightArrow = this.handleRightArrow.bind(this);
+    this.handleLeftArrow = this.handleLeftArrow.bind(this);
   }
 
   componentDidMount() {
@@ -56,6 +57,7 @@ class Reviews extends Component {
         }
         this.setState({
           reviewsByPage,
+          numOfPages,
           tempAllReviews: reviews,
           reviews: reviewsByPage[1],
           avg_accuracy_rating: reviews.reduce((total, review) => total
@@ -268,6 +270,21 @@ class Reviews extends Component {
     }
   }
 
+  handleLeftArrow() {
+    const { selectedPage, reviewsByPage } = this.state;
+    if (selectedPage > 0) {
+      this.setState({
+        selectedPage: selectedPage - 1,
+        reviews: reviewsByPage[selectedPage - 1],
+      });
+      window.scrollBy({
+        top: -400,
+        left: 0,
+        behavior: 'smooth',
+      });
+    }
+  }
+
   render() {
     return (
       <div>
@@ -307,6 +324,7 @@ class Reviews extends Component {
           {...this.state}
           handleReviewsSelected={this.handleReviewsSelected}
           handleRightArrow={this.handleRightArrow}
+          handleLeftArrow={this.handleLeftArrow}
         />
       </div>
     );

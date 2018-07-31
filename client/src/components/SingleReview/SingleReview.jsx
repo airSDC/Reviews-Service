@@ -36,11 +36,11 @@ class SingleReview extends React.Component {
       <div>
         {this.props.review.review_text.length < 175
           ? (
-            <p key={this.props.review.room_id}>
+            <p className="description" key={this.props.review.room_id}>
               {this.props.review.review_text}
             </p>)
           : (
-            <div>
+            <div className="description">
               {this.props.review.review_text.substring(0, 175)}
               {this.state.hideReadMoreButton ? null : (
                 <button type="button" className="read-more" onClick={() => this.handleReadMore(this.props.review.review_text.substring(175))}>
