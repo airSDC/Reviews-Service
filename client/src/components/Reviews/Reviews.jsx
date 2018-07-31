@@ -64,7 +64,7 @@ class Reviews extends Component {
           + this.state.avg_value_rating) / 6;
         const roundedTotalRating = Math.round(totalAveRating * 2) / 2;
         this.setState({
-          avg_total_rating: roundedTotalRating,
+          avgTotalRating: roundedTotalRating,
         });
       })
       .catch(error => console.error('Error in fetching:', error));
