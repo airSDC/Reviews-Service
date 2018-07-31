@@ -19,11 +19,14 @@ class Reviews extends Component {
       selectedPage: 1,
       reviewsPerPage: 6,
       searchValue: '',
+      showBackToReviews: false,
+      tempAllReviews: [],
     };
     this.handleStarRating = this.handleStarRating.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.handleSearchClick = this.handleSearchClick.bind(this);
     this.handleSearchValue = this.handleSearchValue.bind(this);
+    this.handleBackToReviewsButton = this.handleBackToReviewsButton.bind(this);
   }
 
   componentDidMount() {
@@ -38,6 +41,7 @@ class Reviews extends Component {
       .then((reviews) => {
         this.setState({
           reviews,
+          tempAllReviews: reviews,
           avg_accuracy_rating: reviews.reduce((total, review) => total
             + review.accuracy_rating, 0) / reviews.length,
           avg_communication_rating: reviews.reduce((total, review) => total
@@ -188,8 +192,16 @@ class Reviews extends Component {
 
   handleSearchClick() {
     this.setState({
-      reviews: this.state.reviews.filter((review) =>
-      review.review_text.includes(this.state.searchValue))
+      reviews: this.state.reviews
+        .filter(review => review.review_text.includes(this.state.searchValue)),
+      showBackToReviews: true,
+    });
+  }
+
+  handleBackToReviewsButton() {
+    this.setState({
+      reviews: this.state.tempAllReviews,
+      showBackToReviews: false,
     });
   }
 
@@ -207,6 +219,7 @@ class Reviews extends Component {
           reviews={this.state.reviews}
           {...this.state}
           handleStarRating={this.handleStarRating}
+          handleBackToReviewsButton={this.handleBackToReviewsButton}
         />
         <div>
           {this.state.reviews.map(review => (

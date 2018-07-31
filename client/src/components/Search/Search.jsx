@@ -15,7 +15,6 @@ class Search extends React.Component {
     return (
       <div className="search-container">
         <div className="review-length-container">
-
           <div className="">
             <span className="space-right">
               {this.props.reviews.length}

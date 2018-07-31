@@ -113,3 +113,26 @@ body {
   border: none;
 }
 
+/****BACK TO REVIEWS SECTION****/
+
+.back-to-reviews-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.num-of-searches-container {
+  width: 50%;
+}
+
+.back-to-reviews-button {
+  width: 50%;
+}
+
+.back-to-reviews {
+  color: #00858c;
+  border: none;
+  font-weight: bold;
+  font-size: 14px;
+}
+
