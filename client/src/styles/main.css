@@ -11,7 +11,6 @@ body {
 }
 
 .border {
-  /*border-top: 1px solid var(--second-color);*/
   border-bottom: 1px solid var(--second-color);
   padding-top: 2rem;
   padding-bottom: 2rem;
@@ -149,4 +148,31 @@ body {
   font-weight: bold;
   font-size: 14px;
 }
+
+/*******PAGINATION*******/
+/*.non-selected-page {*/
+.page button {
+  color: var(--fourth-color);
+  border-radius: 16px;
+  border: none;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  outline: none;
+  margin-right: 2rem;
+  font-size: 14px;
+}
+
+/*.selected-page {*/
+.page.active button {
+  color: white;
+  background-color: var(--fourth-color);
+}
+
+.page {
+  display: inline;
+  list-style-type: none;
+}
+
+
 

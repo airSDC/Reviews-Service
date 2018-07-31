@@ -236,6 +236,7 @@ class Reviews extends Component {
     this.setState({
       selectedPage: Number(e.currentTarget.textContent),
       reviews: reviewsByPage[Number(e.currentTarget.textContent)],
+      pageClass: 'selected-page',
     });
   }
 
