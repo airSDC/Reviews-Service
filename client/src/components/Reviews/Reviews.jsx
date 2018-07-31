@@ -32,6 +32,7 @@ class Reviews extends Component {
     this.handleReviewsSelected = this.handleReviewsSelected.bind(this);
     this.handleSearchEnter = this.handleSearchEnter.bind(this);
     this.handleSearchBarClass = this.handleSearchBarClass.bind(this);
+    this.handleRightArrow = this.handleRightArrow.bind(this);
   }
 
   componentDidMount() {
@@ -239,7 +240,7 @@ class Reviews extends Component {
       pageClass: 'selected-page',
     });
     window.scrollBy({
-      top: -400, // could be negative value
+      top: -400,
       left: 0,
       behavior: 'smooth',
     });
@@ -249,6 +250,22 @@ class Reviews extends Component {
     this.setState({
       searchBarClass: 'search-bar-area-selected',
     });
+  }
+
+  handleRightArrow() {
+    const { selectedPage, tempAllReviews, reviewsByPage } = this.state;
+    const totalNumOfPages = Math.ceil(tempAllReviews.length / 6);
+    if (selectedPage < totalNumOfPages) {
+      this.setState({
+        selectedPage: selectedPage + 1,
+        reviews: reviewsByPage[selectedPage + 1],
+      });
+      window.scrollBy({
+        top: -400,
+        left: 0,
+        behavior: 'smooth',
+      });
+    }
   }
 
   render() {
@@ -286,7 +303,11 @@ class Reviews extends Component {
                 No reviews to display
               </h1>
             </div>)}
-        <Pagination {...this.state} handleReviewsSelected={this.handleReviewsSelected} />
+        <Pagination
+          {...this.state}
+          handleReviewsSelected={this.handleReviewsSelected}
+          handleRightArrow={this.handleRightArrow}
+        />
       </div>
     );
   }

@@ -174,5 +174,23 @@ body {
   list-style-type: none;
 }
 
+.angle-right-list {
+  display: inline;
+  list-style-type: none;
+}
 
+.angle-right-icon {
+  display: inline;
+  list-style-type: none;
+  border: 1px solid var(--fourth-color);
+  border-radius: 16px;
+  color: var(--fourth-color);
+  border-radius: 16px;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  outline: none;
+  margin-right: 2rem;
+  font-size: 14px;
+}
 
