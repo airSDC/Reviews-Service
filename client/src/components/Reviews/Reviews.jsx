@@ -29,6 +29,7 @@ class Reviews extends Component {
     this.handleSearchValue = this.handleSearchValue.bind(this);
     this.handleBackToReviewsButton = this.handleBackToReviewsButton.bind(this);
     this.handleReviewsSelected = this.handleReviewsSelected.bind(this);
+    this.handleSearchEnter = this.handleSearchEnter.bind(this);
   }
 
   componentDidMount() {
@@ -196,7 +197,19 @@ class Reviews extends Component {
   }
 
   handleSearchClick() {
-    // const { reviews, searchValue } = this.state;
+    const { tempAllReviews, searchValue } = this.state;
+    this.setState({
+      reviews: tempAllReviews
+        .filter(review => review.review_text.includes(searchValue)),
+      showBackToReviews: true,
+    });
+  }
+
+  handleSearchEnter(e) {
+    if (e.keyCode !== 13) {
+      return null;
+    }
+    e.preventDefault();
     const { tempAllReviews, searchValue } = this.state;
     this.setState({
       reviews: tempAllReviews
@@ -225,11 +238,12 @@ class Reviews extends Component {
     return (
       <div>
         <Search
-          reviews={reviews}
+          reviews={this.state.reviews}
           {...this.state}
           handleStarRating={this.handleStarRating}
           handleSearchClick={this.handleSearchClick}
           handleSearchValue={this.handleSearchValue}
+          handleSearchEnter={this.handleSearchEnter}
         />
         <Rating
           reviews={this.state.reviews}

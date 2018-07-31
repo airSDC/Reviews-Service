@@ -8,6 +8,7 @@ const Search = ({
   avgTotalRating,
   handleSearchClick,
   handleSearchValue,
+  handleSearchEnter,
 }) => (
   <div className="search-container border">
     <div className="total-rating-container">
@@ -24,7 +25,7 @@ const Search = ({
     <div className="search-bar-container">
       <form className="search-bar-area">
         <FontAwesome name="search" className="" onClick={handleSearchClick} />
-        <input className="search-input" type="text" placeholder="Search Reviews" onChange={handleSearchValue} />
+        <input className="search-input" type="text" placeholder="Search Reviews" onChange={handleSearchValue} onKeyDown={handleSearchEnter} />
       </form>
     </div>
 
@@ -37,6 +38,7 @@ Search.propTypes = {
   avgTotalRating: PropTypes.number,
   handleSearchClick: PropTypes.func.isRequired,
   handleSearchValue: PropTypes.func.isRequired,
+  handleSearchEnter: PropTypes.func.isRequired,
 };
 
 export default Search;
