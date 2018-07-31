@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-// const SingleReview = ({ review, handleReadMore, restOfText, hideReadMoreButton }) => (
 class SingleReview extends React.Component {
   constructor(props) {
     super(props);
@@ -35,16 +34,16 @@ class SingleReview extends React.Component {
         </div>
       </div>
       <div>
-        {this.props.review.review_text.length < 100
+        {this.props.review.review_text.length < 175
           ? (
             <p key={this.props.review.room_id}>
               {this.props.review.review_text}
             </p>)
           : (
             <div>
-              {this.props.review.review_text.substring(0, 100)}
+              {this.props.review.review_text.substring(0, 175)}
               {this.state.hideReadMoreButton ? null : (
-                <button type="button" className="read-more" onClick={() => this.handleReadMore(this.props.review.review_text.substring(100))}>
+                <button type="button" className="read-more" onClick={() => this.handleReadMore(this.props.review.review_text.substring(175))}>
                   ... Read more
                 </button>)}
               <span>

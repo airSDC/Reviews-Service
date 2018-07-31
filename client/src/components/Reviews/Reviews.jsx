@@ -198,6 +198,9 @@ class Reviews extends Component {
 
   handleSearchClick() {
     const { tempAllReviews, searchValue } = this.state;
+    if (searchValue === '') {
+      return;
+    }
     this.setState({
       reviews: tempAllReviews
         .filter(review => review.review_text.includes(searchValue)),
@@ -251,15 +254,23 @@ class Reviews extends Component {
           handleStarRating={this.handleStarRating}
           handleBackToReviewsButton={this.handleBackToReviewsButton}
         />
-        <div>
-          {this.state.reviews.map(review => (
-            <SingleReview
-              key={review.user}
-              review={review}
-              handleReadMore={this.handleReadMore}
-              {...this.state}
-            />))}
-        </div>
+        {this.state.reviews.length
+          ? (
+            <div>
+              {this.state.reviews.map(review => (
+                <SingleReview
+                  key={review.user}
+                  review={review}
+                  handleReadMore={this.handleReadMore}
+                  {...this.state}
+                />))}
+            </div>
+          ) : (
+            <div>
+              <h1>
+                This listing has not been reviewed yet.
+              </h1>
+            </div>)}
         <Pagination {...this.state} handleReviewsSelected={this.handleReviewsSelected} />
       </div>
     );
