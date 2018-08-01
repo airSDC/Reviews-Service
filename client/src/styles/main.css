@@ -232,7 +232,7 @@ body {
 .rating-container-half {
   display: flex;
   justify-content: space-between;
-  min-width: 50%
+  flex: 1 0 auto;
 }
 
 .rating-text-half {
