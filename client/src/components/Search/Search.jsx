@@ -16,8 +16,7 @@ const Search = ({
     <div className="total-rating-container">
       <span className="review-length-container">
         {tempAllReviews.length}
-      </span>
-      <span className="review-length-container">
+        {' '}
         Reviews
       </span>
       <span>

@@ -10,7 +10,7 @@ const Pagination = ({
   <div>
     <nav role="navigation">
       <div>
-        <ul>
+        <ul className="ul-padding">
           {selectedPage > 1
             ? (
               <li className="angle-right-list">

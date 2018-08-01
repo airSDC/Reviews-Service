@@ -17,50 +17,57 @@ const Rating = props => (
       )
       : (
         <React.Fragment>
-          <div className="rating-left">
+
+          <div className="rating-container-half">
             <div>
-              Accuracy
+              <div>
+                Accuracy
+              </div>
+              <div>
+                Communication
+              </div>
+              <div>
+                Cleanliness
+              </div>
             </div>
             <div>
-              Communication
-            </div>
-            <div>
-              Cleanliness
-            </div>
-          </div>
-          <div className="rating-left">
-            <div>
-              {props.handleStarRating(props.avg_accuracy_rating)}
-            </div>
-            <div>
-              {props.handleStarRating(props.avg_communication_rating)}
-            </div>
-            <div>
-              {props.handleStarRating(props.avg_cleanliness_rating)}
-            </div>
-          </div>
-          <div className="rating-right">
-            <div>
-                Location
-            </div>
-            <div>
-                Check-in
-            </div>
-            <div>
-                Value
+              <div className="rating-star-container">
+                {props.handleStarRating(props.avg_accuracy_rating)}
+              </div>
+              <div>
+                {props.handleStarRating(props.avg_communication_rating)}
+              </div>
+              <div>
+                {props.handleStarRating(props.avg_cleanliness_rating)}
+              </div>
             </div>
           </div>
-          <div>
+
+          <div className="rating-container-half">
             <div>
-              {props.handleStarRating(props.avg_location_rating)}
+              <div>
+                  Location
+              </div>
+              <div>
+                  Check-in
+              </div>
+              <div>
+                  Value
+              </div>
             </div>
             <div>
-              {props.handleStarRating(props.avg_check_in_rating)}
-            </div>
-            <div>
-              {props.handleStarRating(props.avg_value_rating)}
+              <div className="rating-star-container">
+                {props.handleStarRating(props.avg_location_rating)}
+              </div>
+              <div>
+                {props.handleStarRating(props.avg_check_in_rating)}
+              </div>
+              <div>
+                {props.handleStarRating(props.avg_value_rating)}
+              </div>
             </div>
           </div>
+
         </React.Fragment>)}
   </div>
 );
