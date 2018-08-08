@@ -42,7 +42,7 @@ npm install
 GET: Use the '/rooms/:roomId/reviews' endpoint to access get all the reviews for one room, where :roomId is the ID of the room you are interested in
 POST: Use the '/rooms/:roomId/reviews' endpoint to add a review to a room, where :roomId is the ID of the room you are interested in
 In the request body, use this format for your new review:
-```sh
+``````````````
     {
     "room_id": 5,
     "user": "Jeremy",
@@ -58,7 +58,7 @@ In the request body, use this format for your new review:
     "is_reported": true,
     "__v": 0
   }
-```
+``````````````
 PUT: Use the '/rooms/:roomId/reviews/:reviewToUpdate' endpoint to update a review for a room, where :roomId is the ID of the room you are interested in and :reviewToUpdate is the ID of the review you would like to Update
 DELETE: Use the 'rooms/:roomId/reviews/:reviewToDelete' endpoint to delete a review for a room, where :roomId is the ID of the room you are interested in and :reviewToDelete is the ID of the review you would like to delete
 
