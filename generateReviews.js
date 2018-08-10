@@ -1,8 +1,6 @@
 const fs = require('fs');
 const faker = require('faker');
 
-console.time('reviews');
-
 const generateReviews = (n, start, startId) => {
   const write = fs.createWriteStream(`fakeData/fakeReviews${n}.csv`);
   let reviewId = startId;
@@ -27,8 +25,4 @@ const generateReviews = (n, start, startId) => {
   return reviewId;
 };
 
-console.log(generateReviews(4, 7500001, 37152766));
-
-
-// recursively call the function in setTimeout
-console.timeEnd('reviews');
+generateReviews(4, 7500001, 37152766);

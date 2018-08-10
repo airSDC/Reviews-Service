@@ -1,7 +1,5 @@
 const fs = require('fs');
 
-console.time('rooms');
-
 const stream = fs.createWriteStream('fakeRooms.csv');
 
 const generateRooms = () => {
@@ -13,5 +11,3 @@ const generateRooms = () => {
 };
 
 generateRooms();
-
-console.timeEnd('rooms');
