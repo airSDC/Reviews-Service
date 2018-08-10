@@ -3,10 +3,10 @@ const faker = require('faker');
 
 console.time('reviews');
 
-const generateReviews = (n, start, end) => {
+const generateReviews = (n, start, startId) => {
   const write = fs.createWriteStream(`fakeData/fakeReviews${n}.csv`);
-  let reviewId = 0;
-  for (let i = start; i < end; i += 1) {
+  let reviewId = startId;
+  for (let i = start; i < start + 2500000; i += 1) {
     for (let j = 0; j < Math.floor(25 * Math.random()); j += 1) {
       reviewId += 1;
       const userId = faker.random.number(500);
@@ -24,8 +24,11 @@ const generateReviews = (n, start, end) => {
     }
   }
   write.end();
+  return reviewId;
 };
 
-generateReviews(1, 1, 2500001);
-generateReviews(2, 2500001, 5000001);
+console.log(generateReviews(4, 7500001, 37152766));
+
+
+// recursively call the function in setTimeout
 console.timeEnd('reviews');
