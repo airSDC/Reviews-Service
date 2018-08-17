@@ -3,14 +3,14 @@ const faker = require('faker');
 
 const generateUsers = () => {
   let csv = '';
-  for (let i = 0; i < 501; i += 1) {
+  for (let i = 1; i < 501; i += 1) {
     const name = faker.name.findName();
     const image = faker.image.avatar();
-    csv += `${i}, ${name}, ${image},\n`;
+    csv += `${i},${name},${image}\n`;
   }
   return csv;
 };
 
-fs.writeFile('fakeUsers.csv', generateUsers(), (err) => {
+fs.writeFile('./fakeData/fakeUsers.csv', generateUsers(), (err) => {
   if (err) throw err;
 });
