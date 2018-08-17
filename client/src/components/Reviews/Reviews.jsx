@@ -46,6 +46,7 @@ class Reviews extends Component {
     fetch(`/api/rooms/${roomId}/reviews`)
       .then(res => res.json())
       .then((reviews) => {
+        console.log(reviews);
         const numOfPages = Math.ceil(reviews.length / 6);
         const reviewsByPage = {};
         let j = 0;

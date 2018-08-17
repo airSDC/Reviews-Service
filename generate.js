@@ -16,7 +16,7 @@ class ReviewGenerator {
         review.user = faker.name.findName();
         review.created_at = `${faker.date.month()} ${years[Math.floor(Math.random() * (3))]}`;
         review.review_text = faker.lorem.paragraph();
-        review.image_url = `https://s3-us-west-1.amazonaws.com/airfecuserimages/randPeopleImages/randPerson${Math.floor(Math.random() * (12)) + 1}.jpeg`;
+        review.image_url = `https://s3-us-west-1.amazonaws.com/airfecuserimages/randPeopleImages/randPerson${Math.floor(Math.random() * (40)) + 1}.jpg`;
 
         review.accuracy_rating = faker.random.number({
           min: 1,

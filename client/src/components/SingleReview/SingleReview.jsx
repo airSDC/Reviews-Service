@@ -22,11 +22,11 @@ class SingleReview extends React.Component {
     return (<div className="border">
       <div className="review-container">
         <div className="image-container">
-          <img className="user-image" src={this.props.review.image_url} alt="user" />
+          <img className="user-image" src={this.props.review.image} alt="user" />
         </div>
         <div className="user-date-container">
           <div className="username">
-            {this.props.review.user}
+            {this.props.review.username}
           </div>
           <div>
             {this.props.review.created_at}
