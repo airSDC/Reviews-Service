@@ -1,28 +1,45 @@
 const express = require('express');
 const path = require('path');
+const cluster = require('cluster');
 const bodyParser = require('body-parser');
 const routes = require('./../routes');
 
+const numCPUs = require('os').cpus().length;
+
 const app = express();
 
-app.set('port', process.env.PORT || 3002);
+if (cluster.isMaster) {
+  console.log(`Master ${process.pid} is running`);
 
-app.get('/', (req, res) => {
-  res.redirect('/rooms/1');
-});
+  // Fork workers.
+  for (let i = 0; i < numCPUs; i += 1) {
+    cluster.fork();
+  }
 
-app.use(express.static('public/'));
-app.use(express.static('client/dist'));
+  cluster.on('exit', (worker, code, signal) => {
+    console.log(`worker ${worker.process.pid} died`);
+  });
+} else {
 
-app.use(bodyParser.urlencoded({ extended: false }));
+  app.set('port', process.env.PORT || 3002);
 
-app.use(bodyParser.json());
+  app.get('/', (req, res) => {
+    res.redirect('/rooms/1');
+  });
 
-app.get('/rooms/:roomId', (req, res) => {
-  const reactPath = path.join(__dirname, '../public/index.html');
-  res.sendFile(reactPath);
-});
+  app.use(express.static('public/'));
+  app.use(express.static('client/dist'));
 
-app.use('/api', routes);
+  app.use(bodyParser.urlencoded({ extended: false }));
+
+  app.use(bodyParser.json());
+
+  app.get('/rooms/:roomId', (req, res) => {
+    const reactPath = path.join(__dirname, '../public/index.html');
+    res.sendFile(reactPath);
+  });
+
+  app.use('/api', routes);
+}
 
 module.exports = app;

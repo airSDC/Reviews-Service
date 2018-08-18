@@ -28,3 +28,6 @@ aws-keys.json
 
 # Fake Data
 fakeData
+
+# New Relic key
+newrelic.js
