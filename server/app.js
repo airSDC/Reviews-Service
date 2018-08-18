@@ -2,25 +2,22 @@ const express = require('express');
 const path = require('path');
 const cluster = require('cluster');
 const bodyParser = require('body-parser');
-const routes = require('./../routes');
-
 const numCPUs = require('os').cpus().length;
+const routes = require('./../routes');
 
 const app = express();
 
 if (cluster.isMaster) {
   console.log(`Master ${process.pid} is running`);
 
-  // Fork workers.
   for (let i = 0; i < numCPUs; i += 1) {
     cluster.fork();
   }
 
-  cluster.on('exit', (worker, code, signal) => {
+  cluster.on('exit', (worker) => {
     console.log(`worker ${worker.process.pid} died`);
   });
 } else {
-
   app.set('port', process.env.PORT || 3002);
 
   app.get('/', (req, res) => {
