@@ -1,4 +1,8 @@
-const pool = require('./config.js');
+const poolConfig = require('./config.js');
+
+const { Pool } = require('pg');
+
+const pool = new Pool(poolConfig);
 
 const getReviewsByRoomId = (params, cb) => {
   const queryText = 'SELECT reviews.allreviews.*, reviews.users.username, reviews.users.image, reviews.rooms.name FROM reviews.allreviews INNER JOIN reviews.users ON (reviews.allreviews.user_id = reviews.users.id) INNER JOIN reviews.rooms ON (reviews.allreviews.room_id = reviews.rooms.id) WHERE reviews.allreviews.room_id = $1';
