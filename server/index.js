@@ -1,4 +1,4 @@
 require('newrelic');
 const app = require('./app');
 
-app.listen(app.get('port'), () => console.log(`listeningg on port ${app.get('port')}!`));
+app.listen(app.get('port'), () => console.log(`listening on port ${app.get('port')}!`));

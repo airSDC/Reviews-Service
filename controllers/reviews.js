@@ -1,12 +1,24 @@
 const models = require('../models');
+const redisClient = require('../server/redis');
 
 module.exports = {
   get: (req, res) => {
-    models.getReviewsByRoomId([req.params.roomId], (err, reviews) => {
+    const roomId = req.params.roomId;
+    redisClient.get(roomId, (err, data) => {
       if (err) {
-        res.status(500).send(err);
+        throw err;
+      }
+      if (data !== null) {
+        res.send(JSON.parse(data));
       } else {
-        res.status(200).send(reviews.rows);
+        models.getReviewsByRoomId([roomId], (err, reviews) => {
+          if (err) {
+            res.status(500).send(err);
+          } else {
+            redisClient.set(roomId, JSON.stringify(reviews.rows));
+            res.status(200).send(reviews.rows);
+          }
+        });
       }
     });
   },

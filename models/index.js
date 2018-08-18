@@ -1,6 +1,5 @@
-const poolConfig = require('./config.js');
-
 const { Pool } = require('pg');
+const poolConfig = require('./config.js');
 
 const pool = new Pool(poolConfig);
 
